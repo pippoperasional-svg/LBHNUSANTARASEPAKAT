@@ -1,0 +1,7 @@
+{
+  "name": "POSBAKUM PN Bangkinang",
+  "description": "Sistem antrian digital Pos Bantuan Hukum LBH Nusantara Sepakat pada Pengadilan Negeri Kelas 1 B Bangkinang.",
+  "requestFramePermissions": [
+    "microphone"
+  ]
+}
