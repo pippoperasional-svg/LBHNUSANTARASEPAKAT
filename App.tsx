@@ -359,7 +359,7 @@ const App: React.FC = () => {
                   src={config.logoUrl} 
                   onError={handleLogoError}
                   alt="Logo" 
-                  className="w-full h-full object-contain" 
+                  className="w-full h-full object-contain mix-blend-multiply" 
                 />
               </div>
            </div>
@@ -393,7 +393,7 @@ const App: React.FC = () => {
                   src={config.logoUrl} 
                   onError={handleLogoError}
                   alt="Logo" 
-                  className="w-10 h-10 object-contain" 
+                  className="w-10 h-10 object-contain mix-blend-multiply" 
                 />
              </div>
              <h2 className="text-2xl font-bold text-gray-800">Login Petugas</h2>
@@ -447,19 +447,20 @@ const App: React.FC = () => {
               src={config.logoUrl} 
               onError={handleLogoError}
               alt="Background Logo" 
-              className="w-32 h-32 object-contain grayscale brightness-200" 
+              className="w-32 h-32 object-contain grayscale brightness-200 mix-blend-multiply" 
            />
         </div>
         
         <div className="flex justify-between items-start mb-6 relative z-10">
           <div className="flex flex-1 items-start pr-2">
             {/* Main Logo Display */}
-            <div className="bg-white p-1.5 rounded-lg mr-3 shadow-md flex-shrink-0">
+            {/* Changed from bg-white to transparent with blend mode for better PNG-like effect */}
+            <div className="bg-white/20 p-2 rounded-xl mr-3 shadow-sm backdrop-blur-sm flex-shrink-0 border border-white/30">
                <img 
                   src={config.logoUrl} 
                   onError={handleLogoError}
                   alt="Logo PN" 
-                  className="w-12 h-12 object-contain" 
+                  className="w-12 h-12 object-contain mix-blend-multiply" 
                />
             </div>
             
@@ -864,17 +865,18 @@ const App: React.FC = () => {
               src={config.logoUrl} 
               onError={handleLogoError}
               alt="Background Logo" 
-              className="w-40 h-40 object-contain grayscale brightness-200" 
+              className="w-40 h-40 object-contain grayscale brightness-200 mix-blend-multiply" 
            />
         </div>
         <div className="relative z-10 text-center">
-           <div className="w-24 h-24 bg-white rounded-full flex items-center justify-center mx-auto mb-4 border-4 border-white/20 shadow-xl overflow-hidden p-2">
+           {/* Changed from bg-white to transparent glass effect */}
+           <div className="w-24 h-24 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center mx-auto mb-4 border-4 border-white/20 shadow-xl overflow-hidden p-4">
              {/* Main About Logo */}
              <img 
                 src={config.logoUrl} 
                 onError={handleLogoError}
                 alt="Logo LBH" 
-                className="w-full h-full object-contain" 
+                className="w-full h-full object-contain mix-blend-multiply" 
              />
            </div>
            <h1 className="text-base font-bold mb-2 uppercase">{config.lbhName}</h1>
