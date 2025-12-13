@@ -19,6 +19,15 @@ const App: React.FC = () => {
     posbakumName: "POSBAKUM PADA PENGADILAN NEGERI KELAS 1 B BANGKINANG"
   });
 
+  // Fallback logo constant
+  const DEFAULT_LOGO = "https://upload.wikimedia.org/wikipedia/commons/e/e0/Logo_Pengadilan_Negeri_-_Mahkamah_Agung_RI.png";
+  
+  // Handler for Broken Images
+  const handleLogoError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+    e.currentTarget.src = DEFAULT_LOGO;
+    e.currentTarget.onerror = null; // Prevent infinite loop
+  };
+
   // Data States
   const [myTicket, setMyTicket] = useState<Ticket | null>(null);
   const [messages, setMessages] = useState<ChatMessage[]>([]);
@@ -346,7 +355,12 @@ const App: React.FC = () => {
            <div className="w-32 h-32 mb-6 relative flex items-center justify-center">
               <div className="absolute inset-0 bg-primary/10 rounded-full animate-ping opacity-75"></div>
               <div className="relative z-10 bg-white p-4 rounded-full shadow-xl border border-gray-50">
-                <img src={config.logoUrl} alt="Logo" className="w-full h-full object-contain" />
+                <img 
+                  src={config.logoUrl} 
+                  onError={handleLogoError}
+                  alt="Logo" 
+                  className="w-full h-full object-contain" 
+                />
               </div>
            </div>
            
@@ -375,7 +389,12 @@ const App: React.FC = () => {
        <div className="bg-white p-8 rounded-2xl shadow-xl w-full max-w-sm">
           <div className="text-center mb-8">
              <div className="bg-primary/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <img src={config.logoUrl} alt="Logo" className="w-10 h-10 object-contain" />
+                <img 
+                  src={config.logoUrl} 
+                  onError={handleLogoError}
+                  alt="Logo" 
+                  className="w-10 h-10 object-contain" 
+                />
              </div>
              <h2 className="text-2xl font-bold text-gray-800">Login Petugas</h2>
              <p className="text-gray-500 text-sm">Masuk untuk mengelola antrian</p>
@@ -424,14 +443,24 @@ const App: React.FC = () => {
       <div className="bg-primary text-white p-6 rounded-b-3xl shadow-lg relative overflow-hidden">
         {/* Background Logo */}
         <div className="absolute top-0 right-0 p-4 opacity-10">
-           <img src={config.logoUrl} alt="Background Logo" className="w-32 h-32 object-contain grayscale brightness-200" />
+           <img 
+              src={config.logoUrl} 
+              onError={handleLogoError}
+              alt="Background Logo" 
+              className="w-32 h-32 object-contain grayscale brightness-200" 
+           />
         </div>
         
         <div className="flex justify-between items-start mb-6 relative z-10">
           <div className="flex flex-1 items-start pr-2">
             {/* Main Logo Display */}
             <div className="bg-white p-1.5 rounded-lg mr-3 shadow-md flex-shrink-0">
-               <img src={config.logoUrl} alt="Logo PN" className="w-12 h-12 object-contain" />
+               <img 
+                  src={config.logoUrl} 
+                  onError={handleLogoError}
+                  alt="Logo PN" 
+                  className="w-12 h-12 object-contain" 
+               />
             </div>
             
             <div>
@@ -831,12 +860,22 @@ const App: React.FC = () => {
       <div className="bg-primary text-white px-6 pt-8 pb-12 rounded-b-[40px] shadow-lg relative overflow-hidden">
         {/* Background Logo */}
         <div className="absolute top-0 right-0 p-4 opacity-10">
-           <img src={config.logoUrl} alt="Background Logo" className="w-40 h-40 object-contain grayscale brightness-200" />
+           <img 
+              src={config.logoUrl} 
+              onError={handleLogoError}
+              alt="Background Logo" 
+              className="w-40 h-40 object-contain grayscale brightness-200" 
+           />
         </div>
         <div className="relative z-10 text-center">
            <div className="w-24 h-24 bg-white rounded-full flex items-center justify-center mx-auto mb-4 border-4 border-white/20 shadow-xl overflow-hidden p-2">
              {/* Main About Logo */}
-             <img src={config.logoUrl} alt="Logo LBH" className="w-full h-full object-contain" />
+             <img 
+                src={config.logoUrl} 
+                onError={handleLogoError}
+                alt="Logo LBH" 
+                className="w-full h-full object-contain" 
+             />
            </div>
            <h1 className="text-base font-bold mb-2 uppercase">{config.lbhName}</h1>
            <div className="border-t border-white/30 pt-3 mx-10">
