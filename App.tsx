@@ -441,15 +441,6 @@ const App: React.FC = () => {
     <div className="pb-24">
       {/* Header */}
       <div className="bg-primary text-white p-6 rounded-b-3xl shadow-lg relative overflow-hidden">
-        {/* Background Logo */}
-        <div className="absolute top-0 right-0 p-4 opacity-10">
-           <img 
-              src={config.logoUrl} 
-              onError={handleLogoError}
-              alt="Background Logo" 
-              className="w-32 h-32 object-contain grayscale brightness-200 mix-blend-multiply" 
-           />
-        </div>
         
         <div className="flex justify-between items-start mb-6 relative z-10">
           <div className="flex flex-1 items-start pr-2">
