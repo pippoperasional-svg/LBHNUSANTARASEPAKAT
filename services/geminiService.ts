@@ -23,7 +23,12 @@ let client: GoogleGenAI | null = null;
 
 const getClient = (): GoogleGenAI => {
   if (!client) {
-    client = new GoogleGenAI({ apiKey: process.env.API_KEY });
+    const apiKey = process.env.API_KEY;
+    if (!apiKey) {
+      console.error("Gemini API Key is missing! Check your environment variables (API_KEY or VITE_API_KEY).");
+      throw new Error("Missing API Key");
+    }
+    client = new GoogleGenAI({ apiKey });
   }
   return client;
 };
@@ -50,6 +55,6 @@ export const chatWithLegalAssistant = async (
     return response.text || "Maaf, saya tidak dapat memproses permintaan Anda saat ini.";
   } catch (error) {
     console.error("Gemini API Error:", error);
-    return "Maaf, terjadi kesalahan pada sistem AI kami. Silakan coba lagi nanti.";
+    return "Maaf, sistem AI sedang sibuk atau mengalami gangguan koneksi. Silakan coba lagi nanti.";
   }
 };
