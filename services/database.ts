@@ -33,13 +33,31 @@ const getServicePrefix = (type: ServiceType): string => {
 const convertDriveLink = (url: string): string => {
   if (!url) return url;
   
-  // Check if it's a Google Drive link containing '/view' or '/file/d/'
-  if (url.includes('drive.google.com')) {
-    // Regex to extract the File ID
-    const idMatch = url.match(/\/d\/([a-zA-Z0-9_-]+)/);
-    if (idMatch && idMatch[1]) {
-      // Return the Direct Download/View URL format
-      return `https://drive.google.com/uc?export=view&id=${idMatch[1]}`;
+  // Check if it's a Google Drive link
+  if (url.includes('drive.google.com') || url.includes('docs.google.com')) {
+    let id = '';
+    
+    // Pattern 1: /d/ID (common sharing link)
+    const parts = url.match(/\/d\/([a-zA-Z0-9_-]+)/);
+    if (parts && parts[1]) {
+      id = parts[1];
+    } 
+    
+    // Pattern 2: id=ID (query param)
+    if (!id) {
+      try {
+        const urlObj = new URL(url);
+        id = urlObj.searchParams.get('id') || '';
+      } catch (e) {
+        // ignore invalid url
+      }
+    }
+
+    if (id) {
+      // Use thumbnail endpoint with large size (sz=w1000)
+      // This is generally more robust for <img> tags than uc?export=view
+      // and handles WebP format better in browsers.
+      return `https://drive.google.com/thumbnail?id=${id}&sz=w1000`;
     }
   }
   return url;
