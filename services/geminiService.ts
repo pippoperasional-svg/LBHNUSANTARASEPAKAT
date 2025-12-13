@@ -23,9 +23,12 @@ let client: GoogleGenAI | null = null;
 
 const getClient = (): GoogleGenAI => {
   if (!client) {
-    const apiKey = process.env.API_KEY;
+    // Try to get key from process.env (injected by Vite config) OR directly from Vite's import.meta.env
+    // This explicitly supports your VITE_GEMINI_API_KEY setup
+    const apiKey = process.env.API_KEY || (import.meta as any).env?.VITE_GEMINI_API_KEY;
+    
     if (!apiKey) {
-      console.error("Gemini API Key is missing! Check your environment variables (API_KEY or VITE_API_KEY).");
+      console.error("Gemini API Key is missing! Please check your Vercel Environment Variables.");
       throw new Error("Missing API Key");
     }
     client = new GoogleGenAI({ apiKey });
