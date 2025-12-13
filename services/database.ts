@@ -29,6 +29,22 @@ const getServicePrefix = (type: ServiceType): string => {
   }
 };
 
+// Helper to convert Google Drive Sharing Link to Direct Image Link
+const convertDriveLink = (url: string): string => {
+  if (!url) return url;
+  
+  // Check if it's a Google Drive link containing '/view' or '/file/d/'
+  if (url.includes('drive.google.com')) {
+    // Regex to extract the File ID
+    const idMatch = url.match(/\/d\/([a-zA-Z0-9_-]+)/);
+    if (idMatch && idMatch[1]) {
+      // Return the Direct Download/View URL format
+      return `https://drive.google.com/uc?export=view&id=${idMatch[1]}`;
+    }
+  }
+  return url;
+};
+
 export const db = {
   // --- APP CONFIGURATION ---
 
@@ -51,7 +67,8 @@ export const db = {
       }
 
       return {
-        logoUrl: data.logo_url || defaults.logoUrl,
+        // Apply the Google Drive link converter here
+        logoUrl: convertDriveLink(data.logo_url) || defaults.logoUrl,
         lbhName: data.lbh_name || defaults.lbhName,
         courtName: data.court_name || defaults.courtName,
         posbakumName: data.posbakum_name || defaults.posbakumName
