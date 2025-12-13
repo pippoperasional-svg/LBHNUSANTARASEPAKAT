@@ -8,10 +8,11 @@ export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, (process as any).cwd(), '');
 
   // Robustly find the API Key from various sources:
-  // 1. process.env (System Environment Variables in Vercel/Node)
-  // 2. env (Variables loaded from .env files)
-  // 3. Check VITE_ prefixed versions as common convention
-  const apiKey = process.env.API_KEY || env.API_KEY || process.env.VITE_API_KEY || env.VITE_API_KEY;
+  // Prioritize VITE_GEMINI_API_KEY as per your Vercel setup
+  const apiKey = 
+    process.env.VITE_GEMINI_API_KEY || env.VITE_GEMINI_API_KEY || 
+    process.env.API_KEY || env.API_KEY || 
+    process.env.VITE_API_KEY || env.VITE_API_KEY;
 
   return {
     plugins: [react()],
