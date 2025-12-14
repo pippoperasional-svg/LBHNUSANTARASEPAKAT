@@ -598,7 +598,7 @@ const App: React.FC = () => {
              <h3 className="font-bold text-gray-800 text-xs uppercase tracking-wider mb-3 flex items-center">
                <BarChart3 size={14} className="mr-1.5 text-primary"/> Statistik Antrian
              </h3>
-             <div className="grid grid-cols-3 gap-4">
+             <div className="grid grid-cols-3 gap-4 mb-4">
                 <div className="flex flex-col items-center">
                    <div className="text-2xl font-bold text-blue-600">{stats.total}</div>
                    <div className="text-[10px] text-gray-500 font-medium text-center">Total</div>
@@ -612,6 +612,45 @@ const App: React.FC = () => {
                    <div className="text-[10px] text-gray-500 font-medium text-center">Menunggu</div>
                 </div>
              </div>
+
+             {/* Service Breakdown */}
+             <div className="pt-4 border-t border-gray-100">
+               <h4 className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-3">Berdasarkan Layanan</h4>
+               <div className="space-y-3">
+                  {/* Konsultasi */}
+                  <div>
+                    <div className="flex justify-between text-xs mb-1">
+                      <span className="text-gray-600">Konsultasi Hukum</span>
+                      <span className="font-bold text-gray-800">{stats.byService[ServiceType.CONSULTATION]}</span>
+                    </div>
+                    <div className="w-full bg-gray-100 rounded-full h-1.5">
+                      <div className="bg-blue-500 h-1.5 rounded-full" style={{ width: `${(stats.byService[ServiceType.CONSULTATION] / (stats.total || 1)) * 100}%` }}></div>
+                    </div>
+                  </div>
+
+                  {/* Pidana */}
+                  <div>
+                    <div className="flex justify-between text-xs mb-1">
+                      <span className="text-gray-600">Pidana</span>
+                      <span className="font-bold text-gray-800">{stats.byService[ServiceType.CRIMINAL]}</span>
+                    </div>
+                    <div className="w-full bg-gray-100 rounded-full h-1.5">
+                      <div className="bg-red-500 h-1.5 rounded-full" style={{ width: `${(stats.byService[ServiceType.CRIMINAL] / (stats.total || 1)) * 100}%` }}></div>
+                    </div>
+                  </div>
+
+                  {/* Perdata */}
+                  <div>
+                    <div className="flex justify-between text-xs mb-1">
+                      <span className="text-gray-600">Perdata</span>
+                      <span className="font-bold text-gray-800">{stats.byService[ServiceType.CIVIL]}</span>
+                    </div>
+                    <div className="w-full bg-gray-100 rounded-full h-1.5">
+                      <div className="bg-orange-500 h-1.5 rounded-full" style={{ width: `${(stats.byService[ServiceType.CIVIL] / (stats.total || 1)) * 100}%` }}></div>
+                    </div>
+                  </div>
+               </div>
+            </div>
           </div>
       </div>
 
