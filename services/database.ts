@@ -71,7 +71,7 @@ export const db = {
       // Logo LBH (Default fallback)
       logoUrl: "https://upload.wikimedia.org/wikipedia/commons/e/e0/Logo_Pengadilan_Negeri_-_Mahkamah_Agung_RI.png",
       // Logo Pengadilan Negeri (Hardcoded Standard URL)
-      courtLogoUrl: "https://qboaduixikjbruhzhjau.supabase.co/storage/v1/object/public/images/logo%20LBH%20Nusatara%20Sepakat.jpg",
+      courtLogoUrl: "https://qboaduixikjbruhzhjau.supabase.co/storage/v1/object/public/images/logo%20LBH%20Nusatara%20Sepakat.png",
       lbhName: "LBH NUSANTARA SEPAKAT",
       courtName: "PENGADILAN NEGERI KELAS 1 B BANGKINANG",
       posbakumName: "POSBAKUM PADA PENGADILAN NEGERI KELAS 1 B BANGKINANG"
