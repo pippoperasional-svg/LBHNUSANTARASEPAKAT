@@ -25,8 +25,10 @@ const App: React.FC = () => {
   
   // Handler for Broken Images
   const handleLogoError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
-    e.currentTarget.src = DEFAULT_LOGO;
-    e.currentTarget.onerror = null; // Prevent infinite loop
+    // If the image fails, try the fallback. If fallback matches current, stop to avoid loop.
+    if (e.currentTarget.src !== DEFAULT_LOGO) {
+        e.currentTarget.src = DEFAULT_LOGO;
+    }
   };
 
   // Data States
@@ -352,21 +354,22 @@ const App: React.FC = () => {
         <div className="absolute top-0 left-0 w-80 h-80 bg-green-50 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2 opacity-60"></div>
         <div className="absolute bottom-0 right-0 w-80 h-80 bg-yellow-50 rounded-full blur-3xl translate-x-1/2 translate-y-1/2 opacity-60"></div>
 
-        <div className="relative z-10 flex flex-col items-center">
-           <div className="w-32 h-32 mb-6 relative flex items-center justify-center">
+        <div className="relative z-10 flex flex-col items-center max-w-xs text-center">
+           <div className="w-32 h-32 mb-8 relative flex items-center justify-center">
               <div className="absolute inset-0 bg-primary/10 rounded-full animate-ping opacity-75"></div>
               <div className="relative z-10 bg-white p-4 rounded-full shadow-xl border border-gray-50">
                 <img 
                   src={config.logoUrl} 
                   onError={handleLogoError}
+                  referrerPolicy="no-referrer"
                   alt="Logo" 
                   className="w-full h-full object-contain mix-blend-multiply" 
                 />
               </div>
            </div>
            
-           <h1 className="text-2xl font-bold text-gray-800 mb-1 tracking-tight">POSBAKUM DIGITAL</h1>
-           <p className="text-sm text-gray-500 mb-12 text-center px-4">{config.courtName}</p>
+           <h1 className="text-2xl font-bold text-gray-800 mb-2 tracking-tight">POSBAKUM DIGITAL</h1>
+           <p className="text-sm text-gray-500 mb-12 px-2">{config.courtName}</p>
 
            <div className="flex flex-col items-center space-y-3">
              <Loader2 size={32} className="text-primary animate-spin" />
@@ -393,6 +396,7 @@ const App: React.FC = () => {
                 <img 
                   src={config.logoUrl} 
                   onError={handleLogoError}
+                  referrerPolicy="no-referrer"
                   alt="Logo" 
                   className="w-10 h-10 object-contain mix-blend-multiply" 
                 />
@@ -444,15 +448,16 @@ const App: React.FC = () => {
       <div className="bg-primary text-white p-6 rounded-b-3xl shadow-lg relative overflow-hidden">
         
         <div className="flex justify-between items-start mb-6 relative z-10">
-          <div className="flex flex-1 items-start pr-2">
+          <div className="flex flex-1 items-start pr-3 min-w-0">
             
-            {/* Logo Container */}
-            <div className="flex items-center mr-3">
+            {/* Logo Container - Added flex-shrink-0 to prevent shrinking and increased right margin */}
+            <div className="flex items-center mr-4 flex-shrink-0">
                {/* LBH Logo */}
                <div className="bg-white/20 p-2 rounded-xl shadow-sm backdrop-blur-sm flex-shrink-0 border border-white/30 mr-2">
                   <img 
                       src={config.logoUrl} 
                       onError={handleLogoError}
+                      referrerPolicy="no-referrer"
                       alt="Logo LBH" 
                       className="w-10 h-10 object-contain mix-blend-multiply" 
                   />
@@ -462,23 +467,25 @@ const App: React.FC = () => {
                   <img 
                       src={config.courtLogoUrl} 
                       onError={handleLogoError}
+                      referrerPolicy="no-referrer"
                       alt="Logo PN" 
                       className="w-10 h-10 object-contain mix-blend-multiply" 
                   />
                </div>
             </div>
             
-            <div>
-              <p className="text-white text-sm font-bold mb-1">{config.lbhName}</p>
-              <h1 className="text-white text-sm font-bold leading-snug mb-2 uppercase">{config.courtName}</h1>
+            {/* Text Container - Added min-w-0 to allow text wrapping */}
+            <div className="flex-1 min-w-0">
+              <p className="text-white text-sm font-bold mb-1 truncate">{config.lbhName}</p>
+              <h1 className="text-white text-sm font-bold leading-snug mb-2 uppercase break-words">{config.courtName}</h1>
               <div className="inline-flex items-center bg-white/10 px-3 py-1 rounded-lg backdrop-blur-sm">
-                  <Shield size={14} className="mr-2 text-secondary" />
+                  <Shield size={14} className="mr-2 text-secondary flex-shrink-0" />
                   <p className="text-white text-sm font-bold uppercase tracking-wide">POSBAKUM</p>
               </div>
             </div>
           </div>
           
-          <div className="flex flex-col space-y-2">
+          <div className="flex flex-col space-y-2 flex-shrink-0 ml-2">
               <div className="bg-white/20 p-2 rounded-full backdrop-blur-sm cursor-pointer hover:bg-white/30 transition-all flex-shrink-0" onClick={() => setView(ViewState.ABOUT)}>
                 <Info size={20} />
               </div>
@@ -863,11 +870,12 @@ const App: React.FC = () => {
     <div className="min-h-screen bg-gray-50 pb-24">
       {/* Header */}
       <div className="bg-primary text-white px-6 pt-8 pb-12 rounded-b-[40px] shadow-lg relative overflow-hidden">
-        {/* Background Logo */}
-        <div className="absolute top-0 right-0 p-4 opacity-10">
+        {/* Background Logo - REDUCED OPACITY to prevent text coverage issues */}
+        <div className="absolute top-0 right-0 p-4 opacity-5 pointer-events-none">
            <img 
               src={config.logoUrl} 
               onError={handleLogoError}
+              referrerPolicy="no-referrer"
               alt="Background Logo" 
               className="w-40 h-40 object-contain grayscale brightness-200 mix-blend-multiply" 
            />
@@ -879,6 +887,7 @@ const App: React.FC = () => {
              <img 
                 src={config.logoUrl} 
                 onError={handleLogoError}
+                referrerPolicy="no-referrer"
                 alt="Logo LBH" 
                 className="w-full h-full object-contain mix-blend-multiply" 
              />
