@@ -11,9 +11,10 @@ import { Search, Bell, MapPin, Send, Loader2, Info, ChevronRight, User, MessageS
 const App: React.FC = () => {
   const [currentView, setView] = useState<ViewState>(ViewState.HOME);
   
-  // App Config
+  // App Config - Hardcoded URLs for stability
   const [config, setConfig] = useState<AppConfig>({
     logoUrl: "https://upload.wikimedia.org/wikipedia/commons/e/e0/Logo_Pengadilan_Negeri_-_Mahkamah_Agung_RI.png",
+    courtLogoUrl: "https://upload.wikimedia.org/wikipedia/commons/e/e0/Logo_Pengadilan_Negeri_-_Mahkamah_Agung_RI.png",
     lbhName: "LBH NUSANTARA SEPAKAT",
     courtName: "PENGADILAN NEGERI KELAS 1 B BANGKINANG",
     posbakumName: "POSBAKUM PADA PENGADILAN NEGERI KELAS 1 B BANGKINANG"
@@ -444,15 +445,27 @@ const App: React.FC = () => {
         
         <div className="flex justify-between items-start mb-6 relative z-10">
           <div className="flex flex-1 items-start pr-2">
-            {/* Main Logo Display */}
-            {/* Changed from bg-white to transparent with blend mode for better PNG-like effect */}
-            <div className="bg-white/20 p-2 rounded-xl mr-3 shadow-sm backdrop-blur-sm flex-shrink-0 border border-white/30">
-               <img 
-                  src={config.logoUrl} 
-                  onError={handleLogoError}
-                  alt="Logo PN" 
-                  className="w-12 h-12 object-contain mix-blend-multiply" 
-               />
+            
+            {/* Logo Container */}
+            <div className="flex items-center mr-3">
+               {/* LBH Logo */}
+               <div className="bg-white/20 p-2 rounded-xl shadow-sm backdrop-blur-sm flex-shrink-0 border border-white/30 mr-2">
+                  <img 
+                      src={config.logoUrl} 
+                      onError={handleLogoError}
+                      alt="Logo LBH" 
+                      className="w-10 h-10 object-contain mix-blend-multiply" 
+                  />
+               </div>
+               {/* PN Logo */}
+               <div className="bg-white/20 p-2 rounded-xl shadow-sm backdrop-blur-sm flex-shrink-0 border border-white/30">
+                  <img 
+                      src={config.courtLogoUrl} 
+                      onError={handleLogoError}
+                      alt="Logo PN" 
+                      className="w-10 h-10 object-contain mix-blend-multiply" 
+                  />
+               </div>
             </div>
             
             <div>
