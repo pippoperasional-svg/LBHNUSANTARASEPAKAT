@@ -13,8 +13,8 @@ const App: React.FC = () => {
   
   // App Config - Hardcoded URLs for stability
   const [config, setConfig] = useState<AppConfig>({
-    logoUrl: "https://upload.wikimedia.org/wikipedia/commons/e/e0/Logo_Pengadilan_Negeri_-_Mahkamah_Agung_RI.png",
-    courtLogoUrl: "https://upload.wikimedia.org/wikipedia/commons/e/e0/Logo_Pengadilan_Negeri_-_Mahkamah_Agung_RI.png",
+    logoUrl: "https://qboaduixikjbruhzhjau.supabase.co/storage/v1/object/public/images/LBH%20NUSANTARA.png",
+    courtLogoUrl: "https://qboaduixikjbruhzhjau.supabase.co/storage/v1/object/public/images/logo%20LBH%20Nusatara%20Sepakat.png",
     lbhName: "LBH NUSANTARA SEPAKAT",
     courtName: "PENGADILAN NEGERI KELAS 1 B BANGKINANG",
     posbakumName: "POSBAKUM PADA PENGADILAN NEGERI KELAS 1 B BANGKINANG"
@@ -363,7 +363,7 @@ const App: React.FC = () => {
                   onError={handleLogoError}
                   referrerPolicy="no-referrer"
                   alt="Logo" 
-                  className="w-full h-full object-contain mix-blend-multiply" 
+                  className="w-full h-full object-contain" 
                 />
               </div>
            </div>
@@ -398,7 +398,7 @@ const App: React.FC = () => {
                   onError={handleLogoError}
                   referrerPolicy="no-referrer"
                   alt="Logo" 
-                  className="w-10 h-10 object-contain mix-blend-multiply" 
+                  className="w-10 h-10 object-contain" 
                 />
              </div>
              <h2 className="text-2xl font-bold text-gray-800">Login Petugas</h2>
@@ -450,26 +450,27 @@ const App: React.FC = () => {
         <div className="flex justify-between items-start mb-6 relative z-10">
           <div className="flex flex-1 items-start pr-3 min-w-0">
             
-            {/* Logo Container - Added flex-shrink-0 to prevent shrinking and increased right margin */}
-            <div className="flex items-center mr-4 flex-shrink-0">
-               {/* LBH Logo */}
-               <div className="bg-white/20 p-2 rounded-xl shadow-sm backdrop-blur-sm flex-shrink-0 border border-white/30 mr-2">
-                  <img 
-                      src={config.logoUrl} 
-                      onError={handleLogoError}
-                      referrerPolicy="no-referrer"
-                      alt="Logo LBH" 
-                      className="w-10 h-10 object-contain mix-blend-multiply" 
-                  />
-               </div>
-               {/* PN Logo */}
-               <div className="bg-white/20 p-2 rounded-xl shadow-sm backdrop-blur-sm flex-shrink-0 border border-white/30">
+            {/* Logo Container - Order: PN then LBH, space-x-1 */}
+            <div className="flex items-center space-x-1 mr-3 flex-shrink-0">
+               {/* PN Logo Wrapper (FIRST) */}
+               <div className="w-11 h-11 flex items-center justify-center">
                   <img 
                       src={config.courtLogoUrl} 
                       onError={handleLogoError}
                       referrerPolicy="no-referrer"
                       alt="Logo PN" 
-                      className="w-10 h-10 object-contain mix-blend-multiply" 
+                      className="w-full h-full object-contain drop-shadow-sm" 
+                  />
+               </div>
+               
+               {/* LBH Logo Wrapper (SECOND) */}
+               <div className="w-11 h-11 flex items-center justify-center">
+                  <img 
+                      src={config.logoUrl} 
+                      onError={handleLogoError}
+                      referrerPolicy="no-referrer"
+                      alt="Logo LBH" 
+                      className="w-full h-full object-contain drop-shadow-sm" 
                   />
                </div>
             </div>
@@ -881,15 +882,15 @@ const App: React.FC = () => {
            />
         </div>
         <div className="relative z-10 text-center">
-           {/* Changed from bg-white to transparent glass effect */}
-           <div className="w-24 h-24 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center mx-auto mb-4 border-4 border-white/20 shadow-xl overflow-hidden p-4">
+           {/* Changed from bg-white to transparent glass effect to none for PNG */}
+           <div className="w-32 h-32 flex items-center justify-center mx-auto mb-4">
              {/* Main About Logo */}
              <img 
                 src={config.logoUrl} 
                 onError={handleLogoError}
                 referrerPolicy="no-referrer"
                 alt="Logo LBH" 
-                className="w-full h-full object-contain mix-blend-multiply" 
+                className="w-full h-full object-contain drop-shadow-lg" 
              />
            </div>
            <h1 className="text-base font-bold mb-2 uppercase">{config.lbhName}</h1>
