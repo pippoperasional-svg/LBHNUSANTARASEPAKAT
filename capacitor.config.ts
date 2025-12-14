@@ -2,7 +2,7 @@ import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
   appId: 'com.posbakum.app',
-  appName: 'Antrian Pintar POSBAKUM',
+  appName: 'Antrian Pintar LBH Nusantara Sepakat',
   webDir: 'dist',
   server: {
     androidScheme: 'https'
