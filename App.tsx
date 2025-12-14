@@ -389,7 +389,7 @@ const App: React.FC = () => {
            {/* Typography */}
            <div className="space-y-3 mb-12 animate-fade-in-up">
               <h1 className="text-3xl font-extrabold text-gray-800 tracking-tight leading-none">
-                <span className="text-primary">POSBAKUM</span> LBH NUNSATARA SEPAKAT
+                <span className="text-primary">POSBAKUM LBH NUNSATARA SEPAKAT</span>
               </h1>
               <div className="flex justify-center my-3">
                  <div className="h-1 w-16 bg-gradient-to-r from-primary to-yellow-400 rounded-full"></div>
