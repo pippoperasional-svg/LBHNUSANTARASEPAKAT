@@ -349,39 +349,89 @@ const App: React.FC = () => {
   // Loading Screen (Splash Screen)
   if (isLoadingData) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center bg-white relative overflow-hidden">
-        {/* Background Decorative */}
-        <div className="absolute top-0 left-0 w-80 h-80 bg-green-50 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2 opacity-60"></div>
-        <div className="absolute bottom-0 right-0 w-80 h-80 bg-yellow-50 rounded-full blur-3xl translate-x-1/2 translate-y-1/2 opacity-60"></div>
+      <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-white via-slate-50 to-gray-100 relative overflow-hidden font-sans">
+        
+        {/* Abstract Background Shapes */}
+        <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
+            <div className="absolute -top-[10%] -left-[10%] w-[50%] h-[50%] bg-primary/5 rounded-full blur-[80px]"></div>
+            <div className="absolute top-[40%] right-[0%] w-[40%] h-[40%] bg-yellow-400/5 rounded-full blur-[60px]"></div>
+            <div className="absolute -bottom-[10%] left-[20%] w-[60%] h-[40%] bg-primary/5 rounded-full blur-[70px]"></div>
+        </div>
 
-        <div className="relative z-10 flex flex-col items-center max-w-xs text-center">
-           <div className="w-32 h-32 mb-8 relative flex items-center justify-center">
-              <div className="absolute inset-0 bg-primary/10 rounded-full animate-ping opacity-75"></div>
-              <div className="relative z-10 bg-white p-4 rounded-full shadow-xl border border-gray-50">
-                <img 
-                  src={config.logoUrl} 
-                  onError={handleLogoError}
-                  referrerPolicy="no-referrer"
-                  alt="Logo" 
-                  className="w-full h-full object-contain" 
-                />
+        <div className="relative z-10 flex flex-col items-center justify-center w-full max-w-sm px-6 text-center">
+           
+           {/* Animated Logo Section */}
+           <div className="flex items-center justify-center space-x-4 mb-10">
+              {/* PN Logo */}
+              <div className="bg-white p-4 rounded-2xl shadow-xl shadow-gray-200/50 border border-white ring-1 ring-gray-100 transform transition-transform duration-700 hover:scale-105">
+                 <img 
+                    src={config.courtLogoUrl} 
+                    onError={handleLogoError}
+                    alt="PN Logo"
+                    className="w-16 h-16 object-contain"
+                 />
+              </div>
+              
+              {/* Connector */}
+              <div className="h-px w-8 bg-gray-300"></div>
+              
+              {/* LBH Logo */}
+              <div className="bg-white p-4 rounded-2xl shadow-xl shadow-gray-200/50 border border-white ring-1 ring-gray-100 transform transition-transform duration-700 hover:scale-105">
+                 <img 
+                    src={config.logoUrl} 
+                    onError={handleLogoError}
+                    alt="LBH Logo"
+                    className="w-16 h-16 object-contain"
+                 />
               </div>
            </div>
            
-           <h1 className="text-2xl font-bold text-gray-800 mb-2 tracking-tight">POSBAKUM DIGITAL</h1>
-           <p className="text-sm text-gray-500 mb-12 px-2">{config.courtName}</p>
+           {/* Typography */}
+           <div className="space-y-3 mb-12 animate-fade-in-up">
+              <h1 className="text-3xl font-extrabold text-gray-800 tracking-tight leading-none">
+                <span className="text-primary">POSBAKUM</span> DIGITAL
+              </h1>
+              <div className="flex justify-center my-3">
+                 <div className="h-1 w-16 bg-gradient-to-r from-primary to-yellow-400 rounded-full"></div>
+              </div>
+              <p className="text-xs font-medium text-gray-500 uppercase tracking-widest leading-relaxed px-4">
+                {config.courtName}
+              </p>
+           </div>
 
-           <div className="flex flex-col items-center space-y-3">
-             <Loader2 size={32} className="text-primary animate-spin" />
-             <p className="text-xs text-gray-400 font-medium animate-pulse">Memuat data...</p>
+           {/* Custom Loader */}
+           <div className="flex flex-col items-center w-full max-w-[160px] space-y-3">
+             <div className="w-full h-1 bg-gray-200 rounded-full overflow-hidden">
+                <div className="h-full bg-primary rounded-full animate-indeterminate-bar"></div>
+             </div>
+             <p className="text-[10px] text-gray-400 font-medium animate-pulse">Memuat Aplikasi...</p>
            </div>
         </div>
 
-        <div className="absolute bottom-8 text-center w-full px-6">
-            <p className="text-[10px] text-gray-300 font-bold tracking-widest uppercase">
-              Powered by {config.lbhName}
-            </p>
+        {/* Footer Branding */}
+        <div className="absolute bottom-10 z-10 text-center w-full px-6">
+            <p className="text-[9px] text-gray-400 uppercase tracking-wider mb-1">Powered by</p>
+            <p className="text-xs font-bold text-gray-700 tracking-wide">{config.lbhName}</p>
         </div>
+
+        <style>{`
+          @keyframes indeterminate {
+            0% { transform: translateX(-100%) scaleX(0.2); }
+            50% { transform: translateX(0%) scaleX(0.5); }
+            100% { transform: translateX(100%) scaleX(0.2); }
+          }
+          .animate-indeterminate-bar {
+            animation: indeterminate 1.5s infinite linear;
+            width: 100%;
+          }
+          @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+          }
+          .animate-fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+          }
+        `}</style>
       </div>
     );
   }
