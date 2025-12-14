@@ -56,7 +56,7 @@ const convertDriveLink = (url: string): string => {
     if (id) {
       // Use thumbnail endpoint with large size (sz=w1000)
       // This is generally more robust for <img> tags than uc?export=view
-      // and handles WebP format better in browsers.
+      // and handles WebP format format better in browsers.
       return `https://drive.google.com/thumbnail?id=${id}&sz=w1000`;
     }
   }
@@ -68,7 +68,10 @@ export const db = {
 
   async getAppSettings(): Promise<AppConfig> {
     const defaults: AppConfig = {
+      // Logo LBH (Default fallback)
       logoUrl: "https://upload.wikimedia.org/wikipedia/commons/e/e0/Logo_Pengadilan_Negeri_-_Mahkamah_Agung_RI.png",
+      // Logo Pengadilan Negeri (Hardcoded Standard URL)
+      courtLogoUrl: "https://drive.google.com/file/d/1IbJtyAL5lX7v28DE8yXp_iY-Qg4Sqza1/view?usp=sharing",
       lbhName: "LBH NUSANTARA SEPAKAT",
       courtName: "PENGADILAN NEGERI KELAS 1 B BANGKINANG",
       posbakumName: "POSBAKUM PADA PENGADILAN NEGERI KELAS 1 B BANGKINANG"
@@ -87,6 +90,7 @@ export const db = {
       return {
         // Apply the Google Drive link converter here
         logoUrl: convertDriveLink(data.logo_url) || defaults.logoUrl,
+        courtLogoUrl: convertDriveLink(data.court_logo_url) || defaults.courtLogoUrl,
         lbhName: data.lbh_name || defaults.lbhName,
         courtName: data.court_name || defaults.courtName,
         posbakumName: data.posbakum_name || defaults.posbakumName
