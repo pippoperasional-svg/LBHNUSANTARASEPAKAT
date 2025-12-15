@@ -363,12 +363,12 @@ const App: React.FC = () => {
            {/* Animated Logo Section */}
            <div className="flex items-center justify-center space-x-4 mb-10">
               {/* PN Logo */}
-              <div className="bg-white p-4 rounded-2xl shadow-xl shadow-gray-200/50 border border-white ring-1 ring-gray-100 transform transition-transform duration-700 hover:scale-105">
+              <div className="bg-white p-4 rounded-full shadow-xl shadow-gray-200/50 border border-white ring-1 ring-gray-100 transform transition-transform duration-700 hover:scale-105 w-24 h-24 flex items-center justify-center">
                  <img 
                     src={config.courtLogoUrl} 
                     onError={handleLogoError}
                     alt="PN Logo"
-                    className="w-16 h-16 object-contain"
+                    className="w-full h-full object-contain"
                  />
               </div>
               
@@ -376,12 +376,12 @@ const App: React.FC = () => {
               <div className="h-px w-8 bg-gray-300"></div>
               
               {/* LBH Logo */}
-              <div className="bg-white p-4 rounded-2xl shadow-xl shadow-gray-200/50 border border-white ring-1 ring-gray-100 transform transition-transform duration-700 hover:scale-105">
+              <div className="bg-white p-4 rounded-full shadow-xl shadow-gray-200/50 border border-white ring-1 ring-gray-100 transform transition-transform duration-700 hover:scale-105 w-24 h-24 flex items-center justify-center">
                  <img 
                     src={config.logoUrl} 
                     onError={handleLogoError}
                     alt="LBH Logo"
-                    className="w-16 h-16 object-contain"
+                    className="w-full h-full object-contain"
                  />
               </div>
            </div>
@@ -389,7 +389,7 @@ const App: React.FC = () => {
            {/* Typography */}
            <div className="space-y-3 mb-12 animate-fade-in-up">
               <h1 className="text-3xl font-extrabold text-gray-800 tracking-tight leading-none">
-                <span className="text-primary">POSBAKUM LBH NUNSATARA SEPAKAT</span>
+                <span className="text-primary">POSBAKUM</span> DIGITAL
               </h1>
               <div className="flex justify-center my-3">
                  <div className="h-1 w-16 bg-gradient-to-r from-primary to-yellow-400 rounded-full"></div>
@@ -442,13 +442,13 @@ const App: React.FC = () => {
     <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center p-6">
        <div className="bg-white p-8 rounded-2xl shadow-xl w-full max-w-sm">
           <div className="text-center mb-8">
-             <div className="bg-primary/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+             <div className="bg-white shadow-md border border-gray-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4 p-4">
                 <img 
                   src={config.logoUrl} 
                   onError={handleLogoError}
                   referrerPolicy="no-referrer"
                   alt="Logo" 
-                  className="w-10 h-10 object-contain" 
+                  className="w-full h-full object-contain" 
                 />
              </div>
              <h2 className="text-2xl font-bold text-gray-800">Login Petugas</h2>
@@ -497,55 +497,51 @@ const App: React.FC = () => {
       {/* Header */}
       <div className="bg-primary text-white p-6 rounded-b-3xl shadow-lg relative overflow-hidden">
         
-        <div className="flex justify-between items-start mb-6 relative z-10">
-          <div className="flex flex-1 items-start pr-3 min-w-0">
-            
-            {/* Logo Container - Order: PN then LBH, space-x-1 */}
-            <div className="flex items-center space-x-1 mr-3 flex-shrink-0">
-               {/* PN Logo Wrapper (FIRST) */}
-               <div className="w-11 h-11 flex items-center justify-center">
-                  <img 
-                      src={config.courtLogoUrl} 
-                      onError={handleLogoError}
-                      referrerPolicy="no-referrer"
-                      alt="Logo PN" 
-                      className="w-full h-full object-contain drop-shadow-sm" 
-                  />
-               </div>
-               
-               {/* LBH Logo Wrapper (SECOND) */}
-               <div className="w-11 h-11 flex items-center justify-center">
-                  <img 
-                      src={config.logoUrl} 
-                      onError={handleLogoError}
-                      referrerPolicy="no-referrer"
-                      alt="Logo LBH" 
-                      className="w-full h-full object-contain drop-shadow-sm" 
-                  />
-               </div>
+        {/* Utility Buttons - Absolute Positioned */}
+        <div className="absolute top-4 right-4 z-20 flex space-x-2">
+            <div className="bg-white/20 p-1.5 rounded-full backdrop-blur-sm cursor-pointer hover:bg-white/30 transition-all" onClick={() => setView(ViewState.ABOUT)}>
+              <Info size={16} />
             </div>
+            <div 
+              className={`p-1.5 rounded-full backdrop-blur-sm cursor-pointer transition-all ${audioEnabled ? 'bg-white text-primary' : 'bg-white/20 text-white hover:bg-white/30'}`} 
+              onClick={toggleAudio}
+            >
+              {audioEnabled ? <Volume2 size={16} /> : <VolumeX size={16} />}
+            </div>
+        </div>
+
+        <div className="flex justify-between items-center mb-6 relative z-10 pt-4">
+          
+          {/* LEFT LOGO (PN) */}
+          <div className="w-14 h-14 bg-white rounded-full flex items-center justify-center p-2 shadow-md flex-shrink-0">
+              <img 
+                  src={config.courtLogoUrl} 
+                  onError={handleLogoError}
+                  referrerPolicy="no-referrer"
+                  alt="Logo PN" 
+                  className="w-full h-full object-contain" 
+              />
+          </div>
             
-            {/* Text Container - Added min-w-0 to allow text wrapping */}
-            <div className="flex-1 min-w-0">
-              <p className="text-white text-sm font-bold mb-1 truncate">{config.lbhName}</p>
-              <h1 className="text-white text-sm font-bold leading-snug mb-2 uppercase break-words">{config.courtName}</h1>
-              <div className="inline-flex items-center bg-white/10 px-3 py-1 rounded-lg backdrop-blur-sm">
-                  <Shield size={14} className="mr-2 text-secondary flex-shrink-0" />
-                  <p className="text-white text-sm font-bold uppercase tracking-wide">POSBAKUM</p>
-              </div>
+          {/* CENTER TEXT */}
+          <div className="flex-1 mx-2 text-center min-w-0">
+            <p className="text-white text-[10px] font-bold mb-1 truncate opacity-90">{config.lbhName}</p>
+            <h1 className="text-white text-xs font-bold leading-tight mb-2 uppercase">{config.courtName}</h1>
+            <div className="inline-flex items-center bg-white/10 px-3 py-0.5 rounded-full backdrop-blur-sm border border-white/10">
+                <Shield size={10} className="mr-1.5 text-secondary flex-shrink-0" />
+                <p className="text-white text-[9px] font-bold uppercase tracking-wide">POSBAKUM</p>
             </div>
           </div>
           
-          <div className="flex flex-col space-y-2 flex-shrink-0 ml-2">
-              <div className="bg-white/20 p-2 rounded-full backdrop-blur-sm cursor-pointer hover:bg-white/30 transition-all flex-shrink-0" onClick={() => setView(ViewState.ABOUT)}>
-                <Info size={20} />
-              </div>
-              <div 
-                className={`p-2 rounded-full backdrop-blur-sm cursor-pointer transition-all flex-shrink-0 ${audioEnabled ? 'bg-white text-primary' : 'bg-white/20 text-white hover:bg-white/30'}`} 
-                onClick={toggleAudio}
-              >
-                {audioEnabled ? <Volume2 size={20} /> : <VolumeX size={20} />}
-              </div>
+          {/* RIGHT LOGO (LBH) */}
+          <div className="w-14 h-14 bg-white rounded-full flex items-center justify-center p-2 shadow-md flex-shrink-0">
+              <img 
+                  src={config.logoUrl} 
+                  onError={handleLogoError}
+                  referrerPolicy="no-referrer"
+                  alt="Logo LBH" 
+                  className="w-full h-full object-contain" 
+              />
           </div>
         </div>
 
@@ -971,15 +967,14 @@ const App: React.FC = () => {
            />
         </div>
         <div className="relative z-10 text-center">
-           {/* Changed from bg-white to transparent glass effect to none for PNG */}
-           <div className="w-32 h-32 flex items-center justify-center mx-auto mb-4">
-             {/* Main About Logo */}
+           {/* Main About Logo with White Circle Background */}
+           <div className="w-32 h-32 bg-white rounded-full flex items-center justify-center mx-auto mb-4 p-6 shadow-xl shadow-black/10">
              <img 
                 src={config.logoUrl} 
                 onError={handleLogoError}
                 referrerPolicy="no-referrer"
                 alt="Logo LBH" 
-                className="w-full h-full object-contain drop-shadow-lg" 
+                className="w-full h-full object-contain" 
              />
            </div>
            <h1 className="text-base font-bold mb-2 uppercase">{config.lbhName}</h1>
