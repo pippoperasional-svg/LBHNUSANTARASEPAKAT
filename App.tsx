@@ -6,15 +6,15 @@ import AdminDashboard from './components/AdminDashboard';
 import { chatWithLegalAssistant } from './services/geminiService';
 import { db } from './services/database';
 import { announceQueue } from './services/audioService';
-import { Search, Bell, MapPin, Send, Loader2, Info, ChevronRight, User, MessageSquare, Ticket as TicketIcon, Trash2, BookOpen, Target, Heart, Shield, Users, Phone, Lock, LogIn, Volume2, VolumeX, FileText, CheckCircle, BarChart3, RefreshCw } from 'lucide-react';
+import { Search, Bell, MapPin, Send, Loader2, Info, ChevronRight, User, MessageSquare, Ticket as TicketIcon, Trash2, BookOpen, Target, Heart, Shield, Users, Phone, Lock, LogIn, Volume2, VolumeX, FileText, CheckCircle, BarChart3, RefreshCw, Quote } from 'lucide-react';
 
 const App: React.FC = () => {
   const [currentView, setView] = useState<ViewState>(ViewState.HOME);
   
   // App Config - Hardcoded URLs for stability
   const [config, setConfig] = useState<AppConfig>({
-    logoUrl: "https://upload.wikimedia.org/wikipedia/commons/e/e0/Logo_Pengadilan_Negeri_-_Mahkamah_Agung_RI.png",
-    courtLogoUrl: "https://upload.wikimedia.org/wikipedia/commons/e/e0/Logo_Pengadilan_Negeri_-_Mahkamah_Agung_RI.png",
+    logoUrl: "https://qboaduixikjbruhzhjau.supabase.co/storage/v1/object/public/images/LBH%20NUSANTARA.png",
+    courtLogoUrl: "https://qboaduixikjbruhzhjau.supabase.co/storage/v1/object/public/images/logo%20LBH%20Nusatara%20Sepakat.png",
     lbhName: "LBH NUSANTARA SEPAKAT",
     courtName: "PENGADILAN NEGERI KELAS 1 B BANGKINANG",
     posbakumName: "POSBAKUM PADA PENGADILAN NEGERI KELAS 1 B BANGKINANG"
@@ -389,7 +389,7 @@ const App: React.FC = () => {
            {/* Typography */}
            <div className="space-y-3 mb-12 animate-fade-in-up">
               <h1 className="text-3xl font-extrabold text-gray-800 tracking-tight leading-none">
-                <span className="text-primary">POSBAKUM</span> DIGITAL
+                <span className="text-primary">POSBAKUM DIGITAL</span> LBH NUSANTARA SEPAKAT
               </h1>
               <div className="flex justify-center my-3">
                  <div className="h-1 w-16 bg-gradient-to-r from-primary to-yellow-400 rounded-full"></div>
@@ -1059,6 +1059,46 @@ const App: React.FC = () => {
                    <p className="text-xs opacity-80 leading-snug">{item.d}</p>
                  </div>
                ))}
+             </div>
+          </section>
+
+          {/* Standar Pelayanan & Maklumat (NEW) */}
+          <section className="bg-white p-5 rounded-2xl shadow-sm border border-gray-100">
+             <h3 className="text-primary font-bold text-lg mb-3 flex items-center border-b border-gray-100 pb-2">
+               <Shield className="mr-2 text-secondary" size={20} /> Standar Pelayanan
+             </h3>
+             
+             <div className="mb-6">
+                <h4 className="font-bold text-gray-800 text-sm mb-3">Komponen Pelayanan</h4>
+                <div className="space-y-2 bg-gray-50 p-4 rounded-xl">
+                  {[
+                    { label: "Jenis Pelayanan", value: "Non Litigasi & Litigasi" },
+                    { label: "Dasar Hukum", value: "UU 16/2011, Permenkumham" },
+                    { label: "Persyaratan", value: "KTP, SKTM, Dokumen Perkara" },
+                    { label: "Jangka Waktu", value: "Maks. 7 hari kerja" },
+                    { label: "Biaya/Tarif", value: "Gratis" },
+                    { label: "Produk Layanan", value: "Konsultasi, pendampingan" },
+                    { label: "Sarana Prasarana", value: "Aplikasi web, TIK" },
+                  ].map((item, idx) => (
+                    <div key={idx} className="flex flex-col border-b border-gray-200 last:border-0 pb-2 last:pb-0">
+                       <span className="text-gray-500 text-[10px] uppercase tracking-wider mb-0.5">{item.label}</span>
+                       <span className="text-gray-800 text-sm font-medium">{item.value}</span>
+                    </div>
+                  ))}
+                </div>
+             </div>
+
+             <div>
+                <h4 className="font-bold text-gray-800 text-sm mb-3">Maklumat Pelayanan</h4>
+                <div className="bg-gradient-to-br from-primary/5 to-primary/10 p-5 rounded-xl border border-primary/10 relative mt-1">
+                   <Quote className="absolute top-4 left-4 text-primary/20 rotate-180" size={24} />
+                   <p className="text-sm text-gray-800 italic leading-relaxed text-center relative z-10 px-2 pt-2">
+                     "Dengan ini, kami menyatakan sanggup menyelenggarakan pelayanan bantuan hukum sesuai dengan standar pelayanan yang telah ditetapkan serta siap menerima sanksi sesuai peraturan perundang-undangan apabila tidak menepati janji pelayanan ini."
+                   </p>
+                </div>
+                <p className="text-[10px] text-gray-400 mt-2 text-center">
+                  *Maklumat ini dipublikasikan melalui kantor LBH dan aplikasi.
+                </p>
              </div>
           </section>
 
