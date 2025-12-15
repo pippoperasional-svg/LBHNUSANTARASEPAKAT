@@ -79,7 +79,7 @@ const AdminDashboard: React.FC<AdminDashboardProps> = ({ user, onLogout }) => {
       <div className="bg-primary text-white shadow-md p-4 flex justify-between items-center sticky top-0 z-50">
         <div>
            <h1 className="font-bold text-lg leading-none">Admin POSBAKUM</h1>
-           <p className="text-xs text-white/80">{user.name} | {user.role === 'ALL' ? 'Semua Layanan' : user.role}</p>
+           <p className="text-xs text-white">{user.name} | {user.role === 'ALL' ? 'Semua Layanan' : user.role}</p>
         </div>
         <button 
           onClick={onLogout}
