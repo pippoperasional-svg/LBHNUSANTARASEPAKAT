@@ -13,15 +13,15 @@ const App: React.FC = () => {
   
   // App Config - Hardcoded URLs for stability
   const [config, setConfig] = useState<AppConfig>({
-    logoUrl: "https://qboaduixikjbruhzhjau.supabase.co/storage/v1/object/public/images/LBH%20NUSANTARA.png",
-    courtLogoUrl: "https://qboaduixikjbruhzhjau.supabase.co/storage/v1/object/public/images/logo%20LBH%20Nusatara%20Sepakat.png",
+    logoUrl: "https://upload.wikimedia.org/wikipedia/commons/e/e0/Logo_Pengadilan_Negeri_-_Mahkamah_Agung_RI.png",
+    courtLogoUrl: "https://upload.wikimedia.org/wikipedia/commons/e/e0/Logo_Pengadilan_Negeri_-_Mahkamah_Agung_RI.png",
     lbhName: "LBH NUSANTARA SEPAKAT",
     courtName: "PENGADILAN NEGERI KELAS 1 B BANGKINANG",
     posbakumName: "POSBAKUM PADA PENGADILAN NEGERI KELAS 1 B BANGKINANG"
   });
 
   // Fallback logo constant
-  const DEFAULT_LOGO = "https://qboaduixikjbruhzhjau.supabase.co/storage/v1/object/public/images/logo%20LBH%20Nusatara%20Sepakat.png";
+  const DEFAULT_LOGO = "https://upload.wikimedia.org/wikipedia/commons/e/e0/Logo_Pengadilan_Negeri_-_Mahkamah_Agung_RI.png";
   
   // Handler for Broken Images
   const handleLogoError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
@@ -389,7 +389,7 @@ const App: React.FC = () => {
            {/* Typography */}
            <div className="space-y-3 mb-12 animate-fade-in-up">
               <h1 className="text-3xl font-extrabold text-gray-800 tracking-tight leading-none">
-                <span className="text-primary">POSBAKUM LBH NUSANTARA SEPAKAT</span>
+                <span className="text-primary">POSBAKUM</span> DIGITAL
               </h1>
               <div className="flex justify-center my-3">
                  <div className="h-1 w-16 bg-gradient-to-r from-primary to-yellow-400 rounded-full"></div>
@@ -451,7 +451,7 @@ const App: React.FC = () => {
                   className="w-full h-full object-contain" 
                 />
              </div>
-             <h2 className="text-2xl font-bold text-gray-800">Login Petugas</h2>
+             <h2 className="text-lg font-bold text-gray-800">Login Petugas</h2>
              <p className="text-gray-500 text-sm">Masuk untuk mengelola antrian</p>
           </div>
           
@@ -525,11 +525,11 @@ const App: React.FC = () => {
             
           {/* CENTER TEXT */}
           <div className="flex-1 mx-2 text-center min-w-0">
-            <p className="text-white text-[10px] font-bold mb-1 truncate opacity-90">{config.lbhName}</p>
-            <h1 className="text-white text-xs font-bold leading-tight mb-2 uppercase">{config.courtName}</h1>
+            <p className="text-white text-[10px] font-bold mb-1 truncate">{config.lbhName}</p>
+            <h1 className="text-white text-[10px] font-bold leading-tight mb-2 uppercase">{config.courtName}</h1>
             <div className="inline-flex items-center bg-white/10 px-3 py-0.5 rounded-full backdrop-blur-sm border border-white/10">
                 <Shield size={10} className="mr-1.5 text-secondary flex-shrink-0" />
-                <p className="text-white text-[9px] font-bold uppercase tracking-wide">POSBAKUM</p>
+                <p className="text-white text-[10px] font-bold uppercase tracking-wide">POSBAKUM</p>
             </div>
           </div>
           
@@ -546,7 +546,7 @@ const App: React.FC = () => {
         </div>
 
         <div className="bg-white/10 backdrop-blur-md rounded-xl p-4 border border-white/20 relative z-10">
-          <p className="text-xs text-white/80 mb-1">Antrian Sedang Dilayani</p>
+          <p className="text-xs text-white mb-1">Antrian Sedang Dilayani</p>
           <div className="flex justify-between items-end">
              <h2 className="text-4xl font-bold">{currentQueueNumber}</h2>
              <span className="text-xs bg-secondary text-yellow-900 px-2 py-1 rounded font-bold mb-1">LOKET 1</span>
@@ -691,7 +691,7 @@ const App: React.FC = () => {
                 <div className="bg-yellow-50 p-6 rounded-full mb-6">
                     <TicketIcon size={48} className="text-yellow-600" />
                 </div>
-                <h2 className="text-xl font-bold text-gray-800 mb-2">Antrian Masih Aktif</h2>
+                <h2 className="text-lg font-bold text-gray-800 mb-2">Antrian Masih Aktif</h2>
                 <p className="text-gray-500 mb-8 max-w-xs">
                     Anda masih memiliki nomor antrian yang belum selesai. Mohon selesaikan antrian saat ini sebelum mengambil yang baru.
                 </p>
@@ -707,7 +707,7 @@ const App: React.FC = () => {
 
     return (
       <div className="p-6 pb-24 min-h-screen bg-white">
-        <h2 className="text-2xl font-bold text-gray-900 mb-6">Ambil Antrian</h2>
+        <h2 className="text-lg font-bold text-gray-900 mb-6">Ambil Antrian</h2>
         
         <div className="space-y-6">
           <div>
@@ -800,7 +800,7 @@ const App: React.FC = () => {
           <div className="bg-gray-100 p-6 rounded-full mb-6">
             <TicketIcon size={48} className="text-gray-400" />
           </div>
-          <h2 className="text-xl font-bold text-gray-800 mb-2">Belum Ada Tiket</h2>
+          <h2 className="text-lg font-bold text-gray-800 mb-2">Belum Ada Tiket</h2>
           <p className="text-gray-500 mb-8">Anda belum mendaftar antrian hari ini.</p>
           <button 
             onClick={() => setView(ViewState.REGISTER)}
@@ -815,7 +815,7 @@ const App: React.FC = () => {
     return (
       <div className="p-6 pb-24 min-h-screen bg-gray-50">
         <div className="flex justify-between items-center mb-6">
-           <h2 className="text-2xl font-bold text-gray-900">Tiket Saya</h2>
+           <h2 className="text-lg font-bold text-gray-900">Tiket Saya</h2>
            <button 
              onClick={handleManualRefresh}
              className="bg-white p-2 rounded-full shadow-sm text-primary border border-gray-100 hover:bg-gray-50 transition-colors flex items-center"
@@ -895,7 +895,7 @@ const App: React.FC = () => {
              <MessageSquare size={20} className="text-primary" />
           </div>
           <div>
-             <h2 className="font-bold text-gray-800">Asisten POSBAKUM</h2>
+             <h2 className="font-bold text-gray-800 text-lg">Asisten POSBAKUM</h2>
              <p className="text-xs text-green-600 flex items-center">
                <span className="w-2 h-2 bg-green-500 rounded-full mr-1"></span> Online
              </p>
