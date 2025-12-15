@@ -21,7 +21,7 @@ const App: React.FC = () => {
   });
 
   // Fallback logo constant
-  const DEFAULT_LOGO = "https://upload.wikimedia.org/wikipedia/commons/e/e0/Logo_Pengadilan_Negeri_-_Mahkamah_Agung_RI.png";
+  const DEFAULT_LOGO = "https://qboaduixikjbruhzhjau.supabase.co/storage/v1/object/public/images/logo%20LBH%20Nusatara%20Sepakat.png";
   
   // Handler for Broken Images
   const handleLogoError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
@@ -389,7 +389,7 @@ const App: React.FC = () => {
            {/* Typography */}
            <div className="space-y-3 mb-12 animate-fade-in-up">
               <h1 className="text-3xl font-extrabold text-gray-800 tracking-tight leading-none">
-                <span className="text-primary">POSBAKUM</span> DIGITAL
+                <span className="text-primary">POSBAKUM LBH NUSANTARA SEPAKAT</span>
               </h1>
               <div className="flex justify-center my-3">
                  <div className="h-1 w-16 bg-gradient-to-r from-primary to-yellow-400 rounded-full"></div>
